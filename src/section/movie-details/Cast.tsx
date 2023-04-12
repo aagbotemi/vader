@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import Slider from 'react-slick'
 import { ArrowLeft, ArrowRight } from '../../assets/icons';
-import { MoviesForYouCard } from '../../components/movie';
-import { IMoviesForYou, ISliderRef } from '../../interface';
+import { CastCard } from '../../components/movie';
+import { ICast, ISliderRef } from '../../interface';
 
-const MoviesForYou = ({ heading }: IMoviesForYou) => {
+const Cast = ({ heading }: ICast) => {
     const [sliderRef, setSliderRef] = useState<ISliderRef | null>();
 
     let settings = {
@@ -45,7 +45,7 @@ const MoviesForYou = ({ heading }: IMoviesForYou) => {
     return (
         <div className='max-w-[1280px] mx-auto'>
 
-            <div className="pt-12 pb-16">
+            <div className="pt-12">
 
                 <div className="flex justify-between items-center mb-6 pl-4 pr-5 px-[15px] md:px-[50px] lg:px-[112px]">
 
@@ -69,11 +69,9 @@ const MoviesForYou = ({ heading }: IMoviesForYou) => {
                 </div>
 
 
-                <div className='overflow-x-hidden overflow-y-hidden pl-4 md:pl-[50px] lg:pl-[112px]'>
+                <div className='overflow-x-hidden overflow-y-hidden  pl-4 md:pl-[50px] lg:pl-[112px]'>
                     <Slider ref={(c) => setSliderRef(c)} {...settings}>
-                        {
-                            [1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((movie: any, _i: any) => <MoviesForYouCard key={_i} _i={_i} />)
-                        }
+                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((movie: any, _i: any) => <CastCard key={_i} />)}
                     </Slider>
                 </div>
             </div>
@@ -81,4 +79,4 @@ const MoviesForYou = ({ heading }: IMoviesForYou) => {
     )
 }
 
-export { MoviesForYou as default }
+export { Cast as default }

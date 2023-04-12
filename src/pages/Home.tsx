@@ -3,11 +3,11 @@ import { Hero, MoviesForYou } from '../section/home'
 
 const Home = () => {
   return (
-    <div>
-      <Hero />
-      <MoviesForYou />
+    <div className='bg-[#1B1F32]'>
+      <Hero learnMore={true} />
+      <MoviesForYou heading={"Movies for you"} />
     </div>
   )
 }
 
-export default Home
+export { Home as default }
