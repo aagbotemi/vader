@@ -4,6 +4,7 @@ import { AppThunk } from '../../store';
 // API SERVICE
 import { $api } from '../../../services';
 import { IMovieError, IMoviePayload, IMovieState, IMovieDetailPayload, IMovieCastPayload } from './types';
+import axios from 'axios';
 
 const initialState: IMovieState = {
     loading: false,
@@ -41,7 +42,13 @@ export const movieSlice = createSlice({
 
 export const fetchMovies = (): AppThunk => async (dispatch) => {
     dispatch(setLoading(true));
-    const response = await $api.service().fetch(`/discover/movie?api_key=${import.meta.env.VITE_API_KEY}`, false);
+    const response = await $api.service().fetch(`/discover/movie?api_key=42228ad204e1435959312cd291c6e16a`, false);
+    // const response = await $api.service().fetch(`/discover/movie?api_key=${import.meta.env.VITE_API_KEY}`, false);
+
+    const res = await axios.get('https://api.themoviedb.org/3/discover/movie?api_key=42228ad204e1435959312cd291c6e16a');
+    console.log("eeeeeeeeeeeeeeeeeerrrrrrreeeeeeeeeeeeeeessssssssssssssssssssss: ", res);
+    
+
 
     if (!response?.data) {
         dispatch(setLoading(false));
@@ -58,6 +65,7 @@ export const fetchMovie = (movie_id: any): AppThunk => async (dispatch) => {
     dispatch(setLoading(true));
     const response = await $api.service().fetch(`/movie/${movie_id}?api_key=${import.meta.env.VITE_API_KEY}`, false);
     const castResponse = await $api.service().fetch(`/movie/${movie_id}/credits?api_key=${import.meta.env.VITE_API_KEY}`, false);
+    console.log("castResponse: ", { response, castResponse });
 
     if (!response?.data) {
         dispatch(setLoading(false));

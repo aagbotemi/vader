@@ -7,8 +7,7 @@ const MoviesForYouCard = ({ movie }: any) => {
         <div className=''>
             <Link to={`/movie/${movie.id}`}>
                 <div className="mr-2 md:mr-5">
-
-                    <img src={movie.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : "/movie_avatar.svg"} alt="" />
+                    <img src={movie.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : "/movie_avatar.svg"} alt="Movie Poster" />
 
                     <p className="mt-4 font-semibold text-base text-white">{movie.title}</p>
 

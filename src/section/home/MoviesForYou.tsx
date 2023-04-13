@@ -46,6 +46,8 @@ const MoviesForYou = ({ heading }: IMoviesForYou) => {
 
     const { payload, loading } = useAppSelector((state) => state.movies);
 
+    console.log("payloaddddddddddddddddd: ", payload);
+    
     return (
         <div className='max-w-[1280px] mx-auto'>
 
@@ -88,7 +90,7 @@ const MoviesForYou = ({ heading }: IMoviesForYou) => {
                     ) : (
                         <div className='overflow-x-hidden overflow-y-hidden pl-4 md:pl-[50px] lg:pl-[112px]'>
                             <Slider ref={(c) => setSliderRef(c)} {...settings}>
-                                {payload.results.map((movie: IMovie, _i: any) => <MoviesForYouCard key={movie.id} movie={movie} />)}
+                                {Array.isArray(payload.results) && payload.results.length > 0 ? payload.results.map((movie: IMovie, _i: any) => <MoviesForYouCard key={movie.id} movie={movie} />) : null}
                             </Slider>
                         </div>
                     )

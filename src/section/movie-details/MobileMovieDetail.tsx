@@ -9,6 +9,9 @@ const MobileMovieDetail = () => {
 
     const { payload_cast, payload, loading } = useAppSelector(state => state.movies)
 
+
+    console.log("payload_cast: ", payload_cast);
+    
     return (
         <div className=" pl-4 pr-5 px-[15px] md:px-[50px] lg:px-[112px]">
 
@@ -42,11 +45,11 @@ const MobileMovieDetail = () => {
                     <div className="pt-4 pb-10">
                         {activeTab.toLowerCase().includes("cast") ? (
                             <div className="grid grid-cols-2 gap-5">
-                                {payload_cast.map((cast: any, _i: any) => <CastCard key={cast.id} cast={cast} />)}
+                                {Array.isArray(payload_cast) && payload_cast.length > 0 ? payload_cast.map((cast: any, _i: any) => <CastCard key={cast.id} cast={cast} />) : null}
                             </div>
                         ) : (
                             <div className="grid grid-cols-2 gap-5">
-                                {payload.results.map((movie: any, _i: any) => <MoviesForYouCard key={movie.id} movie={movie} />)}
+                                {Array.isArray(payload) && payload.length > 0 ? payload.results.map((movie: any, _i: any) => <MoviesForYouCard key={movie.id} movie={movie} />) : null }
                             </div>
                         )}
                     </div>

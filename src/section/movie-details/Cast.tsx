@@ -10,6 +10,9 @@ const Cast = ({ heading }: ICast) => {
     const [sliderRef, setSliderRef] = useState<ISliderRef | null>();
     const { payload_cast, loading } = useAppSelector(state => state.movies)
 
+
+    console.log("payload_casttttttttttt: ", payload_cast);
+    
     let settings = {
         infinite: true,
         speed: 500,
@@ -88,7 +91,9 @@ const Cast = ({ heading }: ICast) => {
                     ) : (
                         <div className='overflow-x-hidden overflow-y-hidden  pl-4 md:pl-[50px] lg:pl-[112px]'>
                             <Slider ref={(c) => setSliderRef(c)} {...settings}>
-                                {payload_cast.map((cast: any) => <CastCard key={cast.id} cast={cast} />)}
+                                {Array.isArray(payload_cast) && payload_cast.length > 0 ? payload_cast.map((cast: any) => <CastCard key={cast.id} cast={cast} />) : (
+                                    <div className="text-white">No cast found</div>
+                                )}
                             </Slider>
                         </div>
                     )
