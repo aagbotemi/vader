@@ -1,10 +1,10 @@
-import { LearnMore, StarIcon, WatchNow } from '../../assets/icons'
-import { Button } from '../../components/core'
-import { useNavigate } from 'react-router-dom'
-import { IHero } from '../../interface';
-import { useAppSelector } from '../../store';
+import { LearnMore, StarIcon, WatchNow } from '@/assets/icons'
+import { Button } from '@/components/core'
+import { IHero } from '@/interface';
+import { useAppSelector } from '@/store';
 import { Fragment } from 'react';
 import { Bars } from 'react-loader-spinner';
+import { useRouter } from 'next/router';
 
 type Genres = {
   [key: number]: string;
@@ -22,13 +22,13 @@ export const genres: Genres = {
 };
 
 const Hero = ({ learnMore }: IHero) => {
-  const navigate = useNavigate();
-  const { payload, loading } = useAppSelector((state) => state.movies);
+  const router = useRouter();
+  const { payload, loading } = useAppSelector((state: any) => state.movies);
 
   const highlight = payload?.results[0];
 
   return (
-    <div style={{ backgroundImage: highlight.poster_path ? `url(https://image.tmdb.org/t/p/w500${highlight.poster_path})` : "url(/movie_avatar.svg)" }} className='bg-center bg-no-repeat bg-cover w-full h-[calc(100vh-16rem)] md:h-[calc(100vh-8rem)]'>
+    <div style={{ backgroundImage: highlight.poster_path ? `url(https://image.tmdb.org/t/p/w500${highlight.poster_path})` : "url(/movie_avatar.svg)" }} className='bg-center bg-no-repeat bg-cover w-full min-h-[calc(100vh-16rem)] md:h-[calc(100vh-8rem)]'>
       <div className='max-w-[1280px] mx-auto pl-4 pr-5 px-[15px] md:px-[50px] lg:px-[112px] '>
 
         <div className="pt-[105px] md:pt-[175px]">
@@ -82,7 +82,7 @@ const Hero = ({ learnMore }: IHero) => {
                     <Button
                       type='button'
                       className={'ml-2 bg-[#21354A] text-[#FDFDFD] border border-[#98B6FF]'}
-                      onClick={() => navigate(`/movie/${highlight.id}`)}
+                      onClick={() => router.push(`/movie/${highlight.id}`)}
                     >
                       <LearnMore />
                       <span className="ml-2">Learn more</span>

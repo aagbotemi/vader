@@ -2,7 +2,7 @@ import { ChangeEvent, Fragment, useState } from 'react'
 import { CloseCircle, Logo, SearchIcon } from '../../assets/icons'
 import { InputField } from '../core';
 import "animate.css"
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const Navbar = () => {
     const [search, setSearch] = useState<string>("");
@@ -15,7 +15,7 @@ const Navbar = () => {
             <div className='bg-[#1D283C]'>
                 <div className='relative max-w-[1280px] mx-auto pl-4 pr-5 py-4 md:py-5 px-[15px] md:px-[50px] lg:px-[112px]'>
                     <div className="flex items-center justify-between">
-                        <Link to={'/'}>
+                        <Link href={'/'}>
                             <Logo />
                         </Link>
 

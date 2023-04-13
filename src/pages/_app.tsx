@@ -1,20 +1,17 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
-
+import '@/styles/globals.css'
+import type { AppProps } from 'next/app'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Provider } from 'react-redux';
-import { persistor, store } from './store';
+import { persistor, store } from '@/store';
 import { PersistGate } from 'redux-persist/integration/react';
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
+export default function App({ Component, pageProps }: AppProps) {
+  return (
     <Provider store={store}>
       <PersistGate loading={<div />} persistor={persistor}>
-        <App />
+        <Component {...pageProps} />
       </PersistGate>
     </Provider>
-  </React.StrictMode>,
-)
+  )
+}

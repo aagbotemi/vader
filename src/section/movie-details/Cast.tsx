@@ -1,18 +1,15 @@
 import { useState } from 'react'
 import Slider from 'react-slick'
-import { ArrowLeft, ArrowRight } from '../../assets/icons';
-import { CastCard } from '../../components/movie';
-import { ICast, ISliderRef } from '../../interface';
-import { useAppSelector } from '../../store';
+import { ArrowLeft, ArrowRight } from '@/assets/icons';
+import { CastCard } from '@/components/movie';
+import { ICast, ISliderRef } from '@/interface';
+import { useAppSelector } from '@/store';
 import { Bars } from 'react-loader-spinner';
 
 const Cast = ({ heading }: ICast) => {
     const [sliderRef, setSliderRef] = useState<ISliderRef | null>();
-    const { payload_cast, loading } = useAppSelector(state => state.movies)
+    const { payload_cast, loading } = useAppSelector((state: any) => state.movies)
 
-
-    console.log("payload_casttttttttttt: ", payload_cast);
-    
     let settings = {
         infinite: true,
         speed: 500,
@@ -46,8 +43,6 @@ const Cast = ({ heading }: ICast) => {
             }
         ]
     };
-
-    const first = payload_cast[0]
 
     return (
         <div className='max-w-[1280px] mx-auto'>

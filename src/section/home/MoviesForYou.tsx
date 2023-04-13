@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import Slider from 'react-slick'
-import { ArrowLeft, ArrowRight } from '../../assets/icons';
-import { MoviesForYouCard } from '../../components/movie';
-import { IMoviesForYou, ISliderRef } from '../../interface';
-import { useAppSelector } from '../../store';
-import { IMovie } from '../../store/slices/movie';
+import { ArrowLeft, ArrowRight } from '@/assets/icons';
+import { MoviesForYouCard } from '@/components/movie';
+import { IMoviesForYou, ISliderRef } from '@/interface';
+import { useAppSelector } from '@/store';
+import { IMovie } from '@/store/slices/movie';
 import { Bars } from 'react-loader-spinner';
 
 const MoviesForYou = ({ heading }: IMoviesForYou) => {
@@ -44,11 +44,9 @@ const MoviesForYou = ({ heading }: IMoviesForYou) => {
         ]
     };
 
-    const { payload, loading } = useAppSelector((state) => state.movies);
+    const { payload, loading } = useAppSelector((state: any) => state.movies);
 
-    console.log("payloaddddddddddddddddd: ", payload);
-    
-    return (
+    return ( 
         <div className='max-w-[1280px] mx-auto'>
 
             <div className="pt-12 pb-16">
@@ -94,7 +92,7 @@ const MoviesForYou = ({ heading }: IMoviesForYou) => {
                             </Slider>
                         </div>
                     )
-                }
+                } 
             </div>
         </div>
     )

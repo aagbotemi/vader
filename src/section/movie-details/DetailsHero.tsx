@@ -1,11 +1,11 @@
-import { StarIcon, WatchNow } from '../../assets/icons'
-import { Button } from '../../components/core'
-import { useAppSelector } from '../../store';
+import { StarIcon, WatchNow } from '@/assets/icons'
+import { Button } from '@/components/core'
+import { useAppSelector } from '@/store';
 import { Bars } from 'react-loader-spinner';
 import { Fragment } from 'react';
 
 const DetailsHero = () => {
-  const { payload_detail, loading } = useAppSelector((state) => state.movies);
+  const { payload_detail, loading } = useAppSelector((state: any) => state.movies);
 
   return (
     <div style={{ backgroundImage: payload_detail.poster_path ? `url(https://image.tmdb.org/t/p/w500${payload_detail.poster_path})` : "url(/movie_avatar.svg)" }} className='bg-center bg-no-repeat bg-cover w-full h-[calc(100vh-16rem)] md:h-[calc(100vh-8rem)]'>
@@ -31,7 +31,7 @@ const DetailsHero = () => {
                 <div className="flex items-center text-[14px] leading-[22px]">
                   <span className="text-[#E8BA35] pr-2">Featured</span>
                   <span className="text-white">|</span>
-                  <span className="text-white ml-2">{payload_detail.release_date.substring(0, 4)} | {payload_detail.genres.map((genre: any) => genre.name).join(", ")}</span>
+                  <span className="text-white ml-2">{payload_detail.release_date?.substring(0, 4)} | {payload_detail.genres?.map((genre: any) => genre.name).join(", ")}</span>
                 </div>
 
                 <div className="mt-4 max-w-[400px] text-[#FDFDFD] text-[27px] leading-[36px] md:text-[42px] md:leading-[44px] font-semibold">

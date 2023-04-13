@@ -1,13 +1,13 @@
 import { useState } from 'react'
-import { TabButton } from '../../components/core';
-import { CastCard, MoviesForYouCard } from '../../components/movie';
-import { useAppSelector } from '../../store';
+import { TabButton } from '@/components/core';
+import { CastCard, MoviesForYouCard } from '@/components/movie';
+import { useAppSelector } from '@/store';
 import { Bars } from 'react-loader-spinner';
 
 const MobileMovieDetail = () => {
     const [activeTab, setActiveTab] = useState<string>("Cast");
 
-    const { payload_cast, payload, loading } = useAppSelector(state => state.movies)
+    const { payload_cast, payload, loading } = useAppSelector((state: any) => state.movies)
 
 
     console.log("payload_cast: ", payload_cast);
@@ -49,7 +49,7 @@ const MobileMovieDetail = () => {
                             </div>
                         ) : (
                             <div className="grid grid-cols-2 gap-5">
-                                {Array.isArray(payload) && payload.length > 0 ? payload.results.map((movie: any, _i: any) => <MoviesForYouCard key={movie.id} movie={movie} />) : null }
+                                {Array.isArray(payload.results) && payload.results.length > 0 ? payload.results.map((movie: any, _i: any) => <MoviesForYouCard key={movie.id} movie={movie} />) : null }
                             </div>
                         )}
                     </div>

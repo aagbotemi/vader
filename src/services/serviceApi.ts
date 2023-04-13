@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 import each from 'lodash/each';
 import forOwn from 'lodash/forOwn';
-import { $storage } from '../services';
+import { $storage } from '@/services';
 import NProgress from 'nprogress';
 import { toast } from 'react-toastify';
 
@@ -16,8 +16,8 @@ const axiosClient: AxiosInstance = axios.create(axiosConfig);
 const isDev = process.env.NODE_ENV === 'development';
 
 axiosClient.defaults.baseURL = isDev
-  ? import.meta.env.VITE_DEV_URL
-  : import.meta.env.VITE_PROD_URL;
+  ? process.env.NEXT_PUBLIC_DEV_URL
+  : process.env.NEXT_PUBLIC_PROD_URL;
 
 class ServiceApi {
   public url = '';

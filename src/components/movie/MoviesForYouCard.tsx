@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom"
+import Link from "next/link"
 import { IMoviesForYouCard } from "../../interface"
 import { IMovie } from "../../store/slices/movie"
 
 const MoviesForYouCard = ({ movie }: any) => {
     return (
         <div className=''>
-            <Link to={`/movie/${movie.id}`}>
+            <Link href={`/movie/${movie.id}`}>
                 <div className="mr-2 md:mr-5">
                     <img src={movie.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : "/movie_avatar.svg"} alt="Movie Poster" />
 
