@@ -1,9 +1,13 @@
 import { useState } from 'react'
 import { TabButton } from '../../components/core';
-import { CastCard, RecommendationCard } from '../../components/movie';
+import { CastCard, MoviesForYouCard } from '../../components/movie';
+import { useAppSelector } from '../../store';
+import { Bars } from 'react-loader-spinner';
 
 const MobileMovieDetail = () => {
     const [activeTab, setActiveTab] = useState<string>("Cast");
+
+    const { payload_cast, payload, loading } = useAppSelector(state => state.movies)
 
     return (
         <div className=" pl-4 pr-5 px-[15px] md:px-[50px] lg:px-[112px]">
@@ -21,17 +25,34 @@ const MobileMovieDetail = () => {
                 />
             </div>
 
-            <div className="pt-4 pb-10">
-                {activeTab.toLowerCase().includes("cast") ? (
-                    <div className="grid grid-cols-2 gap-5">
-                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((movie: any, _i: any) => <CastCard key={_i} />)}
+            {
+                loading ? (
+                    <div className="flex justify-center items-center">
+                        <Bars
+                            height="80"
+                            width="80"
+                            color="#1D283C"
+                            ariaLabel="bars-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                            visible={true}
+                        />
                     </div>
                 ) : (
-                    <div className="grid grid-cols-2 gap-5">
-                        {[1, 2, 3, 4].map((movie: any, _i: any) => <RecommendationCard key={_i} _i={_i} />)}
+                    <div className="pt-4 pb-10">
+                        {activeTab.toLowerCase().includes("cast") ? (
+                            <div className="grid grid-cols-2 gap-5">
+                                {payload_cast.map((cast: any, _i: any) => <CastCard key={cast.id} cast={cast} />)}
+                            </div>
+                        ) : (
+                            <div className="grid grid-cols-2 gap-5">
+                                {payload.results.map((movie: any, _i: any) => <MoviesForYouCard key={movie.id} movie={movie} />)}
+                            </div>
+                        )}
                     </div>
-                )}
-            </div>
+                )
+            }
+
         </div>
     )
 }

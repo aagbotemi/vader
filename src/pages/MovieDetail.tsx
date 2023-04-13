@@ -1,11 +1,10 @@
-import { Hero, MoviesForYou } from '../section/home'
-import { Cast, MobileMovieDetail } from '../section/movie-details'
+import { MoviesForYou } from '../section/home'
+import { Cast, DetailsHero, MobileMovieDetail } from '../section/movie-details'
 
 const MovieDetail = () => {
-
   return (
     <div className='bg-[#1B1F32]'>
-      <Hero />
+      <DetailsHero />
 
       <div className="hidden md:block">
         <Cast heading={"Cast"} />

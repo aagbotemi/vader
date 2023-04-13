@@ -3,13 +3,16 @@ import Slider from 'react-slick'
 import { ArrowLeft, ArrowRight } from '../../assets/icons';
 import { MoviesForYouCard } from '../../components/movie';
 import { IMoviesForYou, ISliderRef } from '../../interface';
+import { useAppSelector } from '../../store';
+import { IMovie } from '../../store/slices/movie';
+import { Bars } from 'react-loader-spinner';
 
 const MoviesForYou = ({ heading }: IMoviesForYou) => {
     const [sliderRef, setSliderRef] = useState<ISliderRef | null>();
 
     let settings = {
         infinite: true,
-        speed: 1000,
+        speed: 500,
         arrows: false,
         cssEase: "linear",
         className: "center",
@@ -41,6 +44,7 @@ const MoviesForYou = ({ heading }: IMoviesForYou) => {
         ]
     };
 
+    const { payload, loading } = useAppSelector((state) => state.movies);
 
     return (
         <div className='max-w-[1280px] mx-auto'>
@@ -68,14 +72,27 @@ const MoviesForYou = ({ heading }: IMoviesForYou) => {
                     </div>
                 </div>
 
-
-                <div className='overflow-x-hidden overflow-y-hidden pl-4 md:pl-[50px] lg:pl-[112px]'>
-                    <Slider ref={(c) => setSliderRef(c)} {...settings}>
-                        {
-                            [1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((movie: any, _i: any) => <MoviesForYouCard key={_i} _i={_i} />)
-                        }
-                    </Slider>
-                </div>
+                {
+                    loading ? (
+                        <div className="flex justify-center items-center">
+                            <Bars
+                                height="80"
+                                width="80"
+                                color="#1D283C"
+                                ariaLabel="bars-loading"
+                                wrapperStyle={{}}
+                                wrapperClass=""
+                                visible={true}
+                            />
+                        </div>
+                    ) : (
+                        <div className='overflow-x-hidden overflow-y-hidden pl-4 md:pl-[50px] lg:pl-[112px]'>
+                            <Slider ref={(c) => setSliderRef(c)} {...settings}>
+                                {payload.results.map((movie: IMovie, _i: any) => <MoviesForYouCard key={movie.id} movie={movie} />)}
+                            </Slider>
+                        </div>
+                    )
+                }
             </div>
         </div>
     )
