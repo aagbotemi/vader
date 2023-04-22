@@ -20,7 +20,7 @@ axiosClient.defaults.baseURL = isDev
   : process.env.NEXT_PUBLIC_PROD_URL;
 
 class ServiceApi {
-  public url = '';
+  public url = 'https://api.themoviedb.org/3';
 
   // SELECT BASE URL VERSION
   service() {

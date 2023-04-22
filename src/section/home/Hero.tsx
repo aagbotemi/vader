@@ -25,7 +25,7 @@ const Hero = ({ learnMore }: IHero) => {
   const router = useRouter();
   const { payload, loading } = useAppSelector((state: any) => state.movies);
 
-  const highlight = payload?.results[0];
+  const highlight = payload?.results?.[0];
 
   return (
     <div style={{ backgroundImage: highlight.poster_path ? `url(https://image.tmdb.org/t/p/w500${highlight.poster_path})` : "url(/movie_avatar.svg)" }} className='bg-center bg-no-repeat bg-cover w-full min-h-[calc(100vh-16rem)] md:h-[calc(100vh-8rem)]'>
